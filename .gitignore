@@ -1,0 +1,16 @@
+# Arquivos de variáveis de ambiente e checkpoints
+.venv
+.ipynb_checkpoints
+.env
+
+# Credenciais
+credentials.py
+
+# Files e alguns notebooks
+files
+desafio_ifood.ipynb
+teste_csv.ipynb
+scraping_imoveis_streamlit.py
+*modules*
+bases
+codigos
