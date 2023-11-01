@@ -395,7 +395,7 @@ class ScraperZap:
         else:
             return _paginas
     
-    # Função para checar o total de imóveis disponíveis, tanto para venda quanto para aluguel, na cidade especificada.
+    # Função para checar o total de imóveis disponíveis, tanto para venda quanto para aluguel, na cidade especificada. 
     def check_cidades(self, db_name: str = 'scraping', table_name: str = 'disponibilidade_municipios', if_exists: str = 'append', modo:str = 'cidade', cidade: str = 'se+aracaju', estado: str = None):
         '''
             ### Objetivo
