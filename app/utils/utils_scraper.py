@@ -179,7 +179,7 @@ class ScraperZap:
             return _paginas
    
     # Função para tratar os dados das páginas obtidos conforme os parâmetros passados
-    def tratamento_scraping(self, db_name: str = 'scraping', table_name: str = 'dados_imoveis_raw', if_exists: str = None):
+    def tratamento_scraping(self, db_name: str = 'scraping', table_name: str = 'dados_imoveis_raw', if_exists: str = 'append'):
         '''
             ### Objetivo:
             * Função para tratar os dados obtidos com a função scraping, salvando os dados na tabela especificada.
@@ -391,9 +391,74 @@ class ScraperZap:
             # Fechando conexão
             engine.dispose()
 
-            return print(f'Dados de {df.shape[0]} imóveis foram salvos na tabela {table_name} do banco de dados {db_name}!')
+            timestamp = str(datetime.datetime.now(tz = None))
+
+            return print(f'{timestamp} - Dados de {df.shape[0]} imóveis de {self.transacao} da cidade de {self.local}, do tipo {self.tipo}, foram salvos na tabela {table_name} do banco de dados {db_name}!')
         else:
             return _paginas
+    
+    # Função para executar os scraping usando múltiplos valores, usando concurrent.futures para executar tasks de forma concorrente
+    def scraping_multiple(self, _transacao: list = ['aluguel'], _tipo: list = ['apartamentos'], _local: list = ['se+aracaju'], workers: int = 5):
+        '''
+            ### Objetivo
+            Realizar o scraping de dados de imóveis usando múltiplos valores para os parâmetros de transação, local e tipo.
+            A função o método threadpool da lib concurrent.futures para executar múltiplas tasks de forma concorrente, com base no número de workers.
+
+            ### Parâmetros
+            #### _transacao
+            * Define qual a transação de imóveis.
+            * Valores: aluguel e venda
+            #### _tipo:
+            * Recebe os tipos de imóveis desejados.
+            * Valores:
+                    * RESIDENCIAL
+                        * apartamentos
+                        * studio
+                        * quitinetes
+                        * casas
+                        * sobrados
+                        * casas-de-condominio
+                        * casas-de-vila
+                        * cobertura
+                        * flat
+                        * loft
+                        * terrenos-lotes-condominios
+                        * fazendas-sitios-chacaras
+                    * COMERCIAL
+                        * loja-salao
+                        * conjunto-comercial-sala
+                        * casa-comercial
+                        * hoteis-moteis-pousadas
+                        * andares-lajes-corporativas
+                        * predio-inteiro
+                        * terrenos-lotes-comerciais
+                        * galpao-deposito-armazem
+                        * box-garagem
+            #### _local:
+            * Recebe os locais dos imóveis buscados.
+            * Valor no formato: {uf}+{nome}-{da}-{cidade}
+            * Exemplo: se+aracaju, sp+sao-paulo
+            #### workers:
+            * Número de workers selecionados para a ThreadPool que irá executar as tasks de forma concorrente.
+        '''
+
+        # Função auxiliar
+        def auxiliar(transacao, tipo, local):
+            return ScraperZap(transacao = transacao, tipo = tipo, local = local).tratamento_scraping(if_exists = 'append')
+
+        # Criando thread pool para executar tasks de forma concorrente
+        with concurrent.futures.ThreadPoolExecutor(max_workers = workers) as executor:
+            # Criando a sequência de tasks que serão submetidas para a thread pool
+            urls = {executor.submit(auxiliar, transacao, tipo, local): transacao for transacao in _transacao for tipo in _tipo for local in _local}
+            
+            # Loop para executar as tasks de forma concorrente. Também seria possível criar uma list comprehension que esperaria todos os resultados para retornar os valores.
+            for future in concurrent.futures.as_completed(urls):
+                url = urls[future]
+                try:
+                    resultado = future.result()
+                    # print(f'{url} OK')
+                except Exception as exc:
+                    print(f'Erro na operação: {exc}')
     
     # Função para checar o total de imóveis disponíveis, tanto para venda quanto para aluguel, na cidade especificada. 
     def check_cidades(self, db_name: str = 'scraping', table_name: str = 'disponibilidade_municipios', if_exists: str = 'append', modo:str = 'cidade', cidade: str = 'se+aracaju', estado: str = None):
