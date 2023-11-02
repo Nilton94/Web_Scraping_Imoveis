@@ -309,11 +309,17 @@ class ScraperZap:
                         except:
                             valor_abaixo = None
 
-                        # # Data completa de Extração
+                        # Data completa de Extração
                         data = datetime.datetime.now(tz = pytz.timezone('America/Sao_Paulo')).strftime("%Y-%m-%d")
 
                         # Mês de Extração
-                        mes = datetime.datetime.now(tz = pytz.timezone('America/Sao_Paulo')).strftime("%Y-%m-01")
+                        mes = datetime.datetime.now(tz = pytz.timezone('America/Sao_Paulo')).strftime("%m")
+
+                        # Ano de Extração
+                        ano = datetime.datetime.now(tz = pytz.timezone('America/Sao_Paulo')).strftime("%Y")
+
+                        # Dia de Extração
+                        dia = datetime.datetime.now(tz = pytz.timezone('America/Sao_Paulo')).strftime("%d")
 
                         # Salvando os dados dos imóveis de cada página na lista auxiliar
                         dados.append(
@@ -337,7 +343,9 @@ class ScraperZap:
                                 total,
                                 valor_abaixo,
                                 data,
-                                mes
+                                mes,
+                                dia,
+                                ano
                             ]
                         )
                 except:
@@ -367,7 +375,9 @@ class ScraperZap:
                     'total',
                     'valor_abaixo',
                     'data',
-                    'mes'
+                    'mes',
+                    'dia',
+                    'ano'
                 ]
             )
 
@@ -375,7 +385,7 @@ class ScraperZap:
             df = (
                     df
                     .drop(index = df[df['id'].isnull()].index)
-                    .drop_duplicates(subset = ['transacao','id','mes'], ignore_index = True)
+                    .drop_duplicates(subset = ['transacao','id','ano','mes'], ignore_index = True)
             )
 
             # Salvando no banco de dados
@@ -391,9 +401,24 @@ class ScraperZap:
             # Fechando conexão
             engine.dispose()
 
+            # Salvando como Parquet
+            current_dir = os.getcwd()
+
+            # Path do diretório para salvar dos dados
+            data_dir = os.path.join(current_dir, 'data', 'bronze')
+
+            # Criando o diretório caso nao exista
+            os.makedirs(data_dir, exist_ok  = True)
+
+            # Path do arquivo
+            parquet_file_path = os.path.join(data_dir, 'dados_imoveis_raw.parquet')
+
+            # Salvando DataFrame como parquet
+            df.to_parquet(parquet_file_path, engine = 'pyarrow', partition_cols = ['ano','mes','dia'])
+            
             timestamp = str(datetime.datetime.now(tz = None))
 
-            return print(f'{timestamp} - Dados de {df.shape[0]} imóveis de {self.transacao} da cidade de {self.local}, do tipo {self.tipo}, foram salvos na tabela {table_name} do banco de dados {db_name}!')
+            return print(f'{timestamp} - Dados de {df.shape[0]} imóveis de {self.transacao} da cidade de {self.local}, do tipo {self.tipo}, foram salvos na tabela {table_name} do banco de dados {db_name} e no diretório {parquet_file_path}!')
         else:
             return _paginas
     
