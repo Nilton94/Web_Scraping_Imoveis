@@ -10,8 +10,9 @@ credentials.py
 files
 desafio_ifood.ipynb
 teste_csv.ipynb
-scraping_imoveis_streamlit.py
+# scraping_imoveis_streamlit.py
 *modules*
 bases
 codigos
 dados_geograficos.ipynb
+*.ipynb*

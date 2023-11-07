@@ -14,6 +14,8 @@ from pandas import json_normalize
 import os
 from utils.utils_psql import UtilsPSQL
 import concurrent.futures
+import pyarrow as pa
+import pyarrow.parquet as pq
 
 
 class ScraperZap:
@@ -230,13 +232,13 @@ class ScraperZap:
                         try:
                             url_imo = i.find('div','result-card').find('a').get('href')
                         except:
-                            url_imo = None
+                            url_imo = 'Sem info'
 
                         # Base de busca
                         try:
                             base = re.findall(r'www\.(.*?)\.com', url_imo)[0]
                         except:
-                            base = None
+                            base = 'Sem info'
 
                         # Se é destaque ou nao
                         try:
@@ -248,19 +250,19 @@ class ScraperZap:
                         try:
                             bairro = i.find('div',{'data-cy':'card__address'}).text
                         except:
-                            bairro = None
+                            bairro = 'Sem info'
 
                         # Endereço
                         try:
                             endereco = i.find('p', class_='card__street').text
                         except:
-                            endereco = None
+                            endereco = 'Sem info'
 
                         # Descricao
                         try:
                             descricao = i.find('p',{'class':'card__description'}).text
                         except:
-                            descricao = None
+                            descricao = 'Sem info'
 
                         # Área
                         try:
@@ -307,7 +309,7 @@ class ScraperZap:
                         try:
                             valor_abaixo = listing_price.find_all('p')[2].text.strip()
                         except:
-                            valor_abaixo = None
+                            valor_abaixo = 'Sem info'
 
                         # Data completa de Extração
                         data = datetime.datetime.now(tz = pytz.timezone('America/Sao_Paulo')).strftime("%Y-%m-%d")
@@ -413,8 +415,42 @@ class ScraperZap:
             # Path do arquivo
             parquet_file_path = os.path.join(data_dir, 'dados_imoveis_raw.parquet')
 
-            # Salvando DataFrame como parquet
-            df.to_parquet(parquet_file_path, engine = 'pyarrow', partition_cols = ['ano','mes','dia'])
+            # Pyarrow table
+            pa_df = pa.Table.from_pandas(df)
+            pa_schema = pa.schema(
+                    [
+                        pa.field('transacao', pa.string()),
+                        pa.field('base', pa.string()),
+                        pa.field('local', pa.string()),
+                        pa.field('tipo', pa.string()),
+                        pa.field('subtipo', pa.string()),
+                        pa.field('id', pa.string()),
+                        pa.field('url', pa.string()),
+                        pa.field('destaque', pa.string()),
+                        pa.field('bairro', pa.string()),
+                        pa.field('endereco', pa.string()),
+                        pa.field('descricao', pa.string()),
+                        pa.field('area', pa.float64()),
+                        pa.field('quartos', pa.float64()),
+                        pa.field('chuveiros', pa.float64()),
+                        pa.field('garagens', pa.float64()),
+                        pa.field('aluguel', pa.float64()),
+                        pa.field('total', pa.float64()),
+                        pa.field('valor_abaixo', pa.string()),
+                        pa.field('data', pa.string()),
+                        pa.field('mes', pa.string()),
+                        pa.field('dia', pa.string()),
+                        pa.field('ano', pa.string())
+                    ]
+                )
+            
+            # Salvando como Parquet
+            pq.write_to_dataset(
+                pa_df, 
+                root_path = parquet_file_path, 
+                partition_cols = ['ano','mes','dia'],
+                schema = pa_schema
+            )
             
             timestamp = str(datetime.datetime.now(tz = None))
 
