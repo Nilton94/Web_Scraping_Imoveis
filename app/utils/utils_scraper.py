@@ -390,18 +390,21 @@ class ScraperZap:
                     .drop_duplicates(subset = ['transacao','id','ano','mes'], ignore_index = True)
             )
 
-            # Salvando no banco de dados
-            engine = create_engine(f"postgresql://{os.environ['USERNAME_PSQL']}:{os.environ['PASSWORD_PSQL']}@localhost:5432/{db_name}")
-            
-            df.to_sql(
-                f'{table_name}',
-                con = engine,
-                if_exists = f'{if_exists}',
-                index = False
-            )
+            try:
+                # Salvando no banco de dados
+                engine = create_engine(f"postgresql://{os.environ['USERNAME_PSQL']}:{os.environ['PASSWORD_PSQL']}@localhost:5432/{db_name}")
+                
+                df.to_sql(
+                    f'{table_name}',
+                    con = engine,
+                    if_exists = f'{if_exists}',
+                    index = False
+                )
 
-            # Fechando conexão
-            engine.dispose()
+                # Fechando conexão
+                engine.dispose()
+            except:
+                pass
 
             # Salvando como Parquet
             current_dir = os.getcwd()
