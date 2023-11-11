@@ -164,18 +164,18 @@ def base():
 
             df_plot = px.bar(
                 data_frame = df_grouped[df_grouped['rank'] <= int(st.session_state.ranking)],
-                y = 'bairro_f',
-                x = 'imoveis',
+                x = 'bairro_f',
+                y = 'imoveis',
                 color = 'tipo',
-                facet_col='local',
-                facet_col_spacing = 0.2,
+                # facet_col='local',
+                # facet_col_spacing = 0.2,
                 # facet_col_wrap= 1,
                 title = f'<b>Total de Imóveis por Tipo</b><br>Data: {df["data"].max()}',
                 labels = {'imoveis':'Imóveis','bairro_f':'Bairro'},
                 # text_auto = True
-                orientation='h',
-                width = 1200,
-                height = 30*int(st.session_state.ranking)
+                orientation='v',
+                width = 1600,
+                height = 500
             )
 
             # Definindo eixos y e x independentes
