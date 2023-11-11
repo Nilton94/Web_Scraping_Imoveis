@@ -5,21 +5,26 @@ import re
 import plotly.express as px
 
 class StViews():
-    def bar_plot(self, df, local: str, tipo: list, ranking: int):
+    def __init__(self, local: str, tipo: list, ranking: int):
+        self.local = local
+        self.tipo = tipo
+        self.ranking = ranking
+
+    def bar_plot(self, df):
         # Limites
         q1 = df.loc[
                 (
-                    (df.local.isin([local])) 
+                    (df.local.isin([self.local])) 
                     & (df.transacao == 'aluguel')
-                    & (df.tipo.isin(tipo))
+                    & (df.tipo.isin(self.tipo))
                 ),
                 'aluguel'
             ].quantile(0.25)
         q3 = df.loc[
                 (
-                    (df.local.isin([local])) 
+                    (df.local.isin([self.local])) 
                     & (df.transacao == 'aluguel')
-                    & (df.tipo.isin(tipo))
+                    & (df.tipo.isin(self.tipo))
                 ),
                 'aluguel'
             ].quantile(0.75)
@@ -31,9 +36,9 @@ class StViews():
         df_grouped = (
                 df
                 .loc[
-                    (df.local.isin([local]))
+                    (df.local.isin([self.local]))
                     & df.transacao.isin(['aluguel'])
-                    & (df.tipo.isin(tipo))
+                    & (df.tipo.isin(self.tipo))
                     & (df.aluguel >= lim_inf)
                     & (df.aluguel <= lim_sup)
                 ]
@@ -76,25 +81,27 @@ class StViews():
         # st.write(f"{datetime.datetime.now(tz = None).replace(microsecond=0)} - :red[*Plotando os gráficos...*]")
 
         df_plot = px.bar(
-            data_frame = df_grouped[df_grouped['rank'] <= int(ranking)],
-            y = 'bairro_f',
-            x = 'imoveis',
+            data_frame = df_grouped[df_grouped['rank'] <= int(self.ranking)],
+            x = 'bairro_f',
+            y = 'imoveis',
             color = 'tipo',
-            facet_col='local',
-            facet_col_spacing = 0.2,
+            # facet_col='local',
+            # facet_col_spacing = 0.2,
             # facet_col_wrap= 1,
             title = f'<b>Total de Imóveis por Tipo</b><br>Data: {df["data"].max()}',
             labels = {'imoveis':'Imóveis','bairro_f':'Bairro'},
             # text_auto = True
-            orientation='h',
-            width = 30*int(ranking),
-            height = 400
+            orientation='v',
+            width = 1600,
+            height = 600
         )
 
         # Definindo eixos y e x independentes
-        df_plot.update_yaxes(matches=None)
-        df_plot.update_xaxes(matches=None)
+        df_plot.update_yaxes(matches = None)
+        df_plot.update_xaxes(matches = None)
 
         df_plot.for_each_yaxis(lambda yaxis: yaxis.update(showticklabels=True))
 
         return df_plot.show()
+    def check_base(self):
+        pass
