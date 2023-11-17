@@ -107,7 +107,7 @@ class ScraperZap:
             return resultado
     
     # Função para retornar o html das páginas disponíveis com base nos parâmetros passados
-    def scraping(self):
+    def scraping(self, workers: int = 5):
         '''
         Função para retornar os dados de imóveis com base na localidade e no tipo e subtipo escolhidos
             * Parâmetros
@@ -143,39 +143,52 @@ class ScraperZap:
         # Resposta do método paginas
         _paginas = ScraperZap(self.transacao, self.tipo, self.local).paginas()
 
-        if _paginas['Requisicao']['OK']:
-            # Páginas: a página do zapimóveis não mostra mais que 100 páginas por vez.
-            pagina = int(_paginas['Paginas']) + 2 if int(_paginas['Paginas']) < 100 else 101
+        # Páginas: a página do zapimóveis não mostra mais que 100 páginas por vez.
+        pagina = int(_paginas['Paginas']) + 2 if int(_paginas['Paginas']) < 100 else 101
 
-            # Lista para guardar o html de cada página
-            html_pagina = []
+        # Lista para guardar o html de cada página
+        html_pagina = []
 
-            # Loop para retornar o html das páginas disponíveis usando Selenium
-            # Devido ao conteúdo dinâmico da página, o conteúdo completo só aparece caso seja dado o scroll em toda a página
+        def get_html(paginas):
 
-            for n in range(1, pagina):
-                browser = webdriver.Chrome(ChromeDriverManager().install())
-                browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={n}')
-                
-                time.sleep(3)
+            # Browser
+            browser = webdriver.Chrome(ChromeDriverManager().install())
+            browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={paginas}')
+            
+            time.sleep(2)
 
-                # Rola até o fim da página para que todos os cards apareçam
+            # Rola até o fim da página para que todos os cards apareçam
+            total_height = int(browser.execute_script("return document.body.scrollHeight"))
+            n = 1
+
+            while n < total_height:
+                browser.execute_script(f"window.scrollTo(0, {n});")
+                n += 90
                 total_height = int(browser.execute_script("return document.body.scrollHeight"))
-                n = 1
 
-                while n < total_height:
-                    browser.execute_script(f"window.scrollTo(0, {n});")
-                    n += 80
-                    total_height = int(browser.execute_script("return document.body.scrollHeight"))
+            time.sleep(2)
 
-                time.sleep(3)
+            resultado = browser.find_element(By.XPATH, '//*')
+            source_code = resultado.get_attribute("innerHTML")
 
-                resultado = browser.find_element(By.XPATH, '//*')
-                source_code = resultado.get_attribute("innerHTML")
-                html_pagina.append(source_code)
+            browser.quit()
 
-                browser.quit()
+            return source_code
 
+        if _paginas['Requisicao']['OK']:
+            with concurrent.futures.ThreadPoolExecutor(max_workers = workers) as executor:
+                # Criando a sequência de tasks que serão submetidas para a thread pool
+                urls = {executor.submit(get_html, pagina): pagina for pagina in range(1,pagina)}
+                
+                # Loop para executar as tasks de forma concorrente. Também seria possível criar uma list comprehension que esperaria todos os resultados para retornar os valores.
+                for future in concurrent.futures.as_completed(urls):
+                    url = urls[future]
+                    try:
+                        resultado = future.result()
+                        html_pagina.append(resultado)
+                    except Exception as exc:
+                        print(f'{url} com erro: {exc}')
+                        
             return html_pagina
         else:
             return _paginas
@@ -466,7 +479,7 @@ class ScraperZap:
         '''
             ### Objetivo
             Realizar o scraping de dados de imóveis usando múltiplos valores para os parâmetros de transação, local e tipo.
-            A função o método threadpool da lib concurrent.futures para executar múltiplas tasks de forma concorrente, com base no número de workers.
+            A função usa o método threadpool da lib concurrent.futures para executar múltiplas tasks de forma concorrente, com base no número de workers.
 
             ### Parâmetros
             #### _transacao
@@ -668,7 +681,7 @@ class ScraperZap:
             locais = list(map(lambda x: x ,dados_municipios['str_local']))
             
             # Criando thread pool com 5 workers para executar tasks de forma concorrente
-            with concurrent.futures.ThreadPoolExecutor(max_workers = 5) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers = 3) as executor:
                 # Criando a sequência de tasks que serão submetidas para a thread pool
                 urls = {executor.submit(disponibilidade, local): local for local in locais}
                 
