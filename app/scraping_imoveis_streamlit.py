@@ -80,20 +80,26 @@ ranking = st.sidebar.number_input(
     
 if st.sidebar.button("Gerar Gráficos!", key = 'gerador'):
     try:
-        st.sidebar.write('Logs')
-        
+        # ----------------------------Sidebar ---------------------- #
+        st.sidebar.markdown('---')
+        st.sidebar.write('### Logs')
         st.sidebar.write(f"{datetime.datetime.now(tz = None).replace(microsecond=0)} - :red[*Obtendo a base...*]")
-        # Obtenção da base
+        
+        # Hora inicio
+        inicio = datetime.datetime.now(tz = None).replace(microsecond=0)
+
+        # ----------------------Obtenção da base ------------------- #
         df = StViews(local = st.session_state.local, tipo = st.session_state.tipo, ranking = st.session_state.ranking).check_base()
         df_grouped = StViews(local = st.session_state.local, tipo = st.session_state.tipo, ranking = st.session_state.ranking).base_agg()
 
         st.sidebar.write(f"{datetime.datetime.now(tz = None).replace(microsecond=0)} - :red[*Gerando cards...*]")
         
-        # Cards
+        # --------------------------- Cards ------------------------ #
         StViews(local = st.session_state.local, tipo = st.session_state.tipo, ranking = st.session_state.ranking).st_cards()
 
         st.sidebar.write(f"{datetime.datetime.now(tz = None).replace(microsecond=0)} - :red[*Gerando plots...*]")
-        # Gráficos
+        
+        # ------------------------ Gráfico de Coluna --------------- # 
         df_plot = px.bar(
             data_frame = df_grouped[df_grouped['rank'] <= int(st.session_state.ranking)],
             x = 'bairro_f',
@@ -116,13 +122,13 @@ if st.sidebar.button("Gerar Gráficos!", key = 'gerador'):
 
         df_plot.for_each_yaxis(lambda yaxis: yaxis.update(showticklabels=True))
 
-        # Combo chart
-        df = df_grouped[df_grouped['rank'] <= int(st.session_state.ranking)].groupby('bairro_f').agg({'imoveis':'sum', 'aluguel':'mean'}).round(1).sort_values('imoveis', ascending = False).reset_index()
+        # ------------------------ Gráfico de combo --------------- # 
+        df_1 = df_grouped[df_grouped['rank'] <= int(st.session_state.ranking)].groupby('bairro_f').agg({'imoveis':'sum', 'aluguel':'mean'}).round(1).sort_values('imoveis', ascending = False).reset_index()
         combo = go.Figure()
         combo.add_trace(
             go.Bar(
-                x = df['bairro_f'], 
-                y = df['imoveis'], 
+                x = df_1['bairro_f'], 
+                y = df_1['imoveis'], 
                 name = 'Imóveis'
             )
         )
@@ -130,8 +136,8 @@ if st.sidebar.button("Gerar Gráficos!", key = 'gerador'):
         # Add a line trace from the DataFrame
         combo.add_trace(
             go.Scatter(
-                x = df['bairro_f'], 
-                y = df['aluguel'], 
+                x = df_1['bairro_f'], 
+                y = df_1['aluguel'], 
                 mode = 'lines', 
                 name = 'Aluguel', 
                 yaxis = 'y2'
@@ -140,10 +146,10 @@ if st.sidebar.button("Gerar Gráficos!", key = 'gerador'):
 
         # Update layout
         combo.update_layout(
-            title = 'Total de Imóveis e Média de Aluguel por Bairro',
+            title = f'<b>Média do Aluguel por Bairro e Tipo </b><br>Data: {df["data"].max()}',
             xaxis = dict(title = 'Bairro'),
             yaxis = dict(title = 'Imóveis'),
-            yaxis2 = dict(title = 'Média do Aluguel', overlaying = 'y', side = 'right'),
+            yaxis2 = dict(title = 'Média do Aluguel', overlaying = 'y', side = 'right'), 
             width = 1100,
             height = 500
         )
@@ -152,6 +158,23 @@ if st.sidebar.button("Gerar Gráficos!", key = 'gerador'):
 
         st.plotly_chart(df_plot)
         st.plotly_chart(combo)
+
+        st.sidebar.empty()
+
+        # Tempo de duração
+        fim = datetime.datetime.now(tz = None).replace(microsecond=0)
+        tempo = str(fim - inicio)
+        
+        # ------------------------ Download de Dados -------------------- # 
+        st.markdown("""----""")
+        st.download_button(
+            label='Download da Base',
+            data = df.to_csv(index=False),
+            use_container_width = True
+        )
+
+
+        st.sidebar.write(f'<b>Tempo de duração</b>: {tempo}', unsafe_allow_html=True)
 
     except Exception as e:
         st.error(f'Erro na execução: {e}')

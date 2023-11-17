@@ -217,7 +217,7 @@ class StViews():
             st.markdown(
                 f'''
                 <div style="height: 80px; width: 1125px; padding: 1rem; border: 1px solid #d1d1d1; border-radius: 5px; background-color: #000000;text-align: center; justify-content: center;">
-                    <h3 style = "font-size: 30px; color: white; text-align: center; justify-content: center;">Dados Gerais de Imóveis em {self.local}</h3>
+                    <h3 style = "font-size: 30px; color: white; text-align: center; justify-content: center;">Dados Gerais de Imóveis em {(self.local).upper()}</h3>
                 </div>
                 ''',
                 unsafe_allow_html = True
