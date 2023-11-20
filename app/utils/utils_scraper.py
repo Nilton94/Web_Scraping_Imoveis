@@ -12,7 +12,7 @@ import pytz
 from sqlalchemy import create_engine
 from pandas import json_normalize
 import os
-from utils.utils_psql import UtilsPSQL
+# from utils.utils_psql import UtilsPSQL
 import concurrent.futures
 import pyarrow as pa
 import pyarrow.parquet as pq
