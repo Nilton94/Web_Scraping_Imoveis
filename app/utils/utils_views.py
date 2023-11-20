@@ -68,7 +68,10 @@ class StViews():
                         .drop_duplicates(subset = ['local','id'], ignore_index = True)
                 )
 
-                # Retorando o dataframe
+                # Transformando valores zerados em null para não afetar os cálculos média (schema do Arrow não aceita colunas com valores null)
+                df.replace(0.0, None, inplace = True)
+
+                # Retornando o dataframe
                 return df
 
             elif check_local and len(check_tipos) > 0:
@@ -99,6 +102,9 @@ class StViews():
                         ]
                         .drop_duplicates(subset = ['local','id'], ignore_index = True)
                 )
+
+                # Transformando valores zerados em null para não afetar os cálculos média (schema do Arrow não aceita colunas com valores null)
+                df.replace(0.0, None, inplace = True)
 
                 # Retornando o dataframe
                 return df
@@ -159,7 +165,7 @@ class StViews():
                         & (df.aluguel >= lim_inf)
                         & (df.aluguel <= lim_sup)
                     ]
-                    .groupby(by = ['local','bairro','tipo'])
+                    .groupby(by = ['local','bairro','subtipo','tipo'])
                     .agg(
                         {
                             'aluguel':'mean', 
@@ -299,8 +305,8 @@ class StViews():
             labels = {'imoveis':'Imóveis','bairro_f':'Bairro'},
             # text_auto = True
             orientation='v',
-            width = 1600,
-            height = 600
+            width = 1100,
+            height = 500
         )
 
         # Definindo eixos y e x independentes
@@ -309,4 +315,4 @@ class StViews():
 
         df_plot.for_each_yaxis(lambda yaxis: yaxis.update(showticklabels=True))
 
-        return df_plot.show()
+        return df_plot #.show()

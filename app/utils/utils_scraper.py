@@ -107,7 +107,7 @@ class ScraperZap:
             return resultado
     
     # Função para retornar o html das páginas disponíveis com base nos parâmetros passados
-    def scraping(self, workers: int = 5):
+    def scraping(self, workers: int = 3):
         '''
         Função para retornar os dados de imóveis com base na localidade e no tipo e subtipo escolhidos
             * Parâmetros
@@ -239,7 +239,7 @@ class ScraperZap:
                         try:
                             id = i.find('div','result-card').find('a').get('data-id')
                         except:
-                            id = None
+                            id = 'Sem info'
 
                         # URL
                         try:
@@ -256,6 +256,7 @@ class ScraperZap:
                         # Se é destaque ou nao
                         try:
                             destaque = i.find('div',{'class':'l-tag-card__content'}).text
+                            destaque.replace('\n','')
                         except:
                             destaque = 'Sem destaque'
 
@@ -281,42 +282,42 @@ class ScraperZap:
                         try:
                             area = float(re.sub('[^0-9]', '', i.find('p', {'itemprop':'floorSize'}).text))
                         except:
-                            area = None
+                            area = 0.0
 
                         # Quartos
                         try:
                             quartos = float(re.sub('[^0-9]', '', i.find('p', {'itemprop':'numberOfRooms'}).text))
                         except:
-                            quartos = None
+                            quartos = 0.0
 
                         # Chuveiros
                         try:
                             chuveiros = float(re.sub('[^0-9]', '', i.find('p', {'itemprop':'numberOfBathroomsTotal'}).text))
                         except:
-                            chuveiros = None
+                            chuveiros = 0.0
 
                         # Garagens
                         try:
                             # garagens = 0 if len(i.find('p', {'itemprop':'numberOfBathroomsTotal'}).find_next('p').text) >= 5 else i.find('p', {'itemprop':'numberOfBathroomsTotal'}).find_next('p').text
                             if len(i.find('p', {'itemprop':'numberOfBathroomsTotal'}).find_next('p').text) > 1:
-                                garagens = None
+                                garagens = 0.0
                             else:
                                 garagens = float(re.sub('[^0-9]', '', i.find('p', {'itemprop':'numberOfBathroomsTotal'}).find_next('p').text))
                         except:
-                            garagens = None
+                            garagens = 0.0
 
                         # Aluguel
                         listing_price = i.find('div', {'class':'listing-price'})
                         try:
                             aluguel = float(re.sub('[^0-9]', '', listing_price.find_all('p')[1].text.strip()))
                         except:
-                            aluguel = None
+                            aluguel = 0.0
 
                         # Total
                         try:
                             total = float(re.sub('[^0-9]', '', listing_price.find_all('p')[0].text.strip()))
                         except:
-                            total = None
+                            total = 0.0
 
                         # Valor abaixo
                         try:
@@ -399,7 +400,7 @@ class ScraperZap:
             # Dropando linhas sem id do imóvel e duplicados com base na transação, id e mês de obtenção do dado
             df = (
                     df
-                    .drop(index = df[df['id'].isnull()].index)
+                    .drop(index = df[(df['id'].isnull()) | (df['id'] == 'Sem info')].index)
                     .drop_duplicates(subset = ['transacao','id','ano','mes'], ignore_index = True)
             )
 
@@ -475,7 +476,7 @@ class ScraperZap:
             return _paginas
     
     # Função para executar os scraping usando múltiplos valores, usando concurrent.futures para executar tasks de forma concorrente
-    def scraping_multiple(self, _transacao: list = ['aluguel'], _tipo: list = ['apartamentos'], _local: list = ['se+aracaju'], workers: int = 5):
+    def scraping_multiple(self, _transacao: list = ['aluguel'], _tipo: list = ['apartamentos'], _local: list = ['se+aracaju'], workers: int = 2):
         '''
             ### Objetivo
             Realizar o scraping de dados de imóveis usando múltiplos valores para os parâmetros de transação, local e tipo.
@@ -642,26 +643,31 @@ class ScraperZap:
                 .filter(['str_local','imoveis_aluguel','imoveis_venda','data'], axis = 'columns')
             )
 
-            # Salvando na tabela de disponibilidade_municipios
-            engine = create_engine(f"postgresql://{os.environ['USERNAME_PSQL']}:{os.environ['PASSWORD_PSQL']}@localhost:5432/{db_name}")
-            
-            df.to_sql(
-                f'{table_name}',
-                con = engine,
-                if_exists = f'{if_exists}',
-                index = False
-            )
+            try:
+                # Salvando na tabela de disponibilidade_municipios
+                engine = create_engine(f"postgresql://{os.environ['USERNAME_PSQL']}:{os.environ['PASSWORD_PSQL']}@localhost:5432/{db_name}")
+                
+                df.to_sql(
+                    f'{table_name}',
+                    con = engine,
+                    if_exists = f'{if_exists}',
+                    index = False
+                )
 
-            print(f'Dados de venda e aluguel da cidade {cidade} salvos na tabela {table_name}!')
+                print(f'Dados de venda e aluguel da cidade {cidade} salvos na tabela {table_name}!')
 
-            # Fechando conexão
-            engine.dispose()
+                 # Fechando conexão
+                engine.dispose()
+            except:
+                pass
 
             return resultado
 
         if modo.lower().strip() == 'cidade':
             # Chamando função auxiliar
-            disponibilidade(cidade = cidade)
+            res = disponibilidade(cidade = cidade)
+
+            return res
 
         elif modo.lower().strip() == 'estado':
             # Dados geográficos
@@ -677,11 +683,12 @@ class ScraperZap:
                 '''
             )
 
+            res = []
             # Lista de locais
             locais = list(map(lambda x: x ,dados_municipios['str_local']))
             
             # Criando thread pool com 5 workers para executar tasks de forma concorrente
-            with concurrent.futures.ThreadPoolExecutor(max_workers = 3) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers = 2) as executor:
                 # Criando a sequência de tasks que serão submetidas para a thread pool
                 urls = {executor.submit(disponibilidade, local): local for local in locais}
                 
@@ -690,8 +697,11 @@ class ScraperZap:
                     url = urls[future]
                     try:
                         resultado = future.result()
+                        res.append(resultado)
                         # print(f'{url} OK')
                     except Exception as exc:
                         print(f'{url} com erro: {exc}')
+            
+            return res
         else:
             print(f'Modo {modo} não existe. Escolha uma opção válida de modo!')
