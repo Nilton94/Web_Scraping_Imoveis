@@ -404,21 +404,21 @@ class ScraperZap:
                     .drop_duplicates(subset = ['transacao','id','ano','mes'], ignore_index = True)
             )
 
-            try:
-                # Salvando no banco de dados
-                engine = create_engine(f"postgresql://{os.environ['USERNAME_PSQL']}:{os.environ['PASSWORD_PSQL']}@localhost:5432/{db_name}")
+            # try:
+            #     # Salvando no banco de dados
+            #     engine = create_engine(f"postgresql://{os.environ['USERNAME_PSQL']}:{os.environ['PASSWORD_PSQL']}@localhost:5432/{db_name}")
                 
-                df.to_sql(
-                    f'{table_name}',
-                    con = engine,
-                    if_exists = f'{if_exists}',
-                    index = False
-                )
+            #     df.to_sql(
+            #         f'{table_name}',
+            #         con = engine,
+            #         if_exists = f'{if_exists}',
+            #         index = False
+            #     )
 
-                # Fechando conexão
-                engine.dispose()
-            except:
-                pass
+            #     # Fechando conexão
+            #     engine.dispose()
+            # except:
+            #     pass
 
             # Salvando como Parquet
             current_dir = os.getcwd()
@@ -539,169 +539,169 @@ class ScraperZap:
                     print(f'Erro na operação: {exc}')
     
     # Função para checar o total de imóveis disponíveis, tanto para venda quanto para aluguel, na cidade especificada. 
-    def check_cidades(self, db_name: str = 'scraping', table_name: str = 'disponibilidade_municipios', if_exists: str = 'append', modo:str = 'cidade', cidade: str = 'se+aracaju', estado: str = None):
-        '''
-            ### Objetivo
-            * Checa, de forma geral, o total de imóveis de aluguel ou venda disponíveis no local especificado.
-            * Salva os dados consultados na base de dados que guarda a disponibilidade de imóveis de venda e locação.
-            * Retorna um dicionário com dados de venda e aluguel
-            ### Parâmetros
-            #### db_name:
-                * Base de dados onde será salvo os dados da consulta.
-            #### table_name:
-                * Tabela onde a consulta será salva.
-            #### if_exists:
-                * Forma como os dados serão salvos na base
-                * Valores: fail, replace, append
-            #### modo:
-                * Define como a consulta será feita, i.e, se será buscado dados específicos de uma cidade ou de um estado inteiro
-                * Valores: cidade, estado
-            #### cidade/estado:
-                * Valores passados a depender do modo escolhido
-                * Se a opção for cidade, os valores devem ser passados no seguinte formato: {uf}+{cidade}. Espaços em branco devem ser separados por - no nome da cidade.
-        '''
+    # def check_cidades(self, db_name: str = 'scraping', table_name: str = 'disponibilidade_municipios', if_exists: str = 'append', modo:str = 'cidade', cidade: str = 'se+aracaju', estado: str = None):
+    #     '''
+    #         ### Objetivo
+    #         * Checa, de forma geral, o total de imóveis de aluguel ou venda disponíveis no local especificado.
+    #         * Salva os dados consultados na base de dados que guarda a disponibilidade de imóveis de venda e locação.
+    #         * Retorna um dicionário com dados de venda e aluguel
+    #         ### Parâmetros
+    #         #### db_name:
+    #             * Base de dados onde será salvo os dados da consulta.
+    #         #### table_name:
+    #             * Tabela onde a consulta será salva.
+    #         #### if_exists:
+    #             * Forma como os dados serão salvos na base
+    #             * Valores: fail, replace, append
+    #         #### modo:
+    #             * Define como a consulta será feita, i.e, se será buscado dados específicos de uma cidade ou de um estado inteiro
+    #             * Valores: cidade, estado
+    #         #### cidade/estado:
+    #             * Valores passados a depender do modo escolhido
+    #             * Se a opção for cidade, os valores devem ser passados no seguinte formato: {uf}+{cidade}. Espaços em branco devem ser separados por - no nome da cidade.
+    #     '''
 
-        # Função auxiliar
-        def disponibilidade(cidade):
-            # Definindo user agent aleatórios e headers da requisição
-            ua = UserAgent()
-            user_agents = ua.get_random_user_agent()
-            headers = {'user-agent': user_agents.strip(), 'encoding':'utf-8'}
+    #     # Função auxiliar
+    #     def disponibilidade(cidade):
+    #         # Definindo user agent aleatórios e headers da requisição
+    #         ua = UserAgent()
+    #         user_agents = ua.get_random_user_agent()
+    #         headers = {'user-agent': user_agents.strip(), 'encoding':'utf-8'}
 
-            # Definindo a URL
-            url = [f'{self.base_url}/{transacao}/imoveis/{cidade}/?&transacao={transacao}&pagina=1' for transacao in ['aluguel','venda']]
+    #         # Definindo a URL
+    #         url = [f'{self.base_url}/{transacao}/imoveis/{cidade}/?&transacao={transacao}&pagina=1' for transacao in ['aluguel','venda']]
 
-            # Data
-            data = str(datetime.datetime.now(tz = None))
+    #         # Data
+    #         data = str(datetime.datetime.now(tz = None))
 
-            # Requisição
-            r = [requests.get(url, headers = headers) for url in url]
+    #         # Requisição
+    #         r = [requests.get(url, headers = headers) for url in url]
 
-            # Obtenção do html
-            soup = [BeautifulSoup(r.text, 'html.parser') for r in r]
+    #         # Obtenção do html
+    #         soup = [BeautifulSoup(r.text, 'html.parser') for r in r]
             
-            # Dados de aluguel
-            try:
-                res = soup[0].find('div', {"class":"listing-wrapper__title"}).text
+    #         # Dados de aluguel
+    #         try:
+    #             res = soup[0].find('div', {"class":"listing-wrapper__title"}).text
 
-                # Tratamento do html
-                imoveis = float(re.sub('[^0-9]','',res))
-                imoveis_pagina = imoveis//100 if imoveis//100 > 1 else 1
+    #             # Tratamento do html
+    #             imoveis = float(re.sub('[^0-9]','',res))
+    #             imoveis_pagina = imoveis//100 if imoveis//100 > 1 else 1
 
-                # Dict com o resultado
-                aluguel = {
-                    'Aluguel': {
-                        'Requisicao': {'Status': r[0].status_code, 'Reason': r[0].reason, 'OK': r[0].ok},
-                        'Imoveis': imoveis,
-                        'Paginas': imoveis_pagina
-                    }
-                }
-            except:
-                # Dict com o resultado
-                aluguel = {
-                    'Aluguel': {
-                        'Requisicao': {'Status': r[0].status_code, 'Reason': r[0].reason, 'OK': r[0].ok},
-                        'Imoveis': None,
-                        'Paginas': None
-                    }
-                }
+    #             # Dict com o resultado
+    #             aluguel = {
+    #                 'Aluguel': {
+    #                     'Requisicao': {'Status': r[0].status_code, 'Reason': r[0].reason, 'OK': r[0].ok},
+    #                     'Imoveis': imoveis,
+    #                     'Paginas': imoveis_pagina
+    #                 }
+    #             }
+    #         except:
+    #             # Dict com o resultado
+    #             aluguel = {
+    #                 'Aluguel': {
+    #                     'Requisicao': {'Status': r[0].status_code, 'Reason': r[0].reason, 'OK': r[0].ok},
+    #                     'Imoveis': None,
+    #                     'Paginas': None
+    #                 }
+    #             }
 
-            # Dados de venda
-            try:
-                res = soup[1].find('div', {"class":"listing-wrapper__title"}).text
+    #         # Dados de venda
+    #         try:
+    #             res = soup[1].find('div', {"class":"listing-wrapper__title"}).text
 
-                # Tratamento do html
-                imoveis = float(re.sub('[^0-9]','',res))
-                imoveis_pagina = imoveis//100 if imoveis//100 > 1 else 1
+    #             # Tratamento do html
+    #             imoveis = float(re.sub('[^0-9]','',res))
+    #             imoveis_pagina = imoveis//100 if imoveis//100 > 1 else 1
 
-                # Dict com o resultado
-                venda = {
-                    'Venda': {
-                        'Requisicao': {'Status': r[1].status_code, 'Reason': r[1].reason, 'OK': r[1].ok},
-                        'Imoveis': imoveis,
-                        'Paginas': imoveis_pagina
-                    }
-                }
-            except:
-                # Dict com o resultado
-                venda = {
-                    'Venda': {
-                        'Requisicao': {'Status': r[1].status_code, 'Reason': r[1].reason, 'OK': r[1].ok},
-                        'Imoveis': None,
-                        'Paginas': None
-                    }
-                }
+    #             # Dict com o resultado
+    #             venda = {
+    #                 'Venda': {
+    #                     'Requisicao': {'Status': r[1].status_code, 'Reason': r[1].reason, 'OK': r[1].ok},
+    #                     'Imoveis': imoveis,
+    #                     'Paginas': imoveis_pagina
+    #                 }
+    #             }
+    #         except:
+    #             # Dict com o resultado
+    #             venda = {
+    #                 'Venda': {
+    #                     'Requisicao': {'Status': r[1].status_code, 'Reason': r[1].reason, 'OK': r[1].ok},
+    #                     'Imoveis': None,
+    #                     'Paginas': None
+    #                 }
+    #             }
             
-            # Parametros
-            parametros = {'Local': cidade, 'Data':data}
-            resultado = parametros | aluguel | venda
+    #         # Parametros
+    #         parametros = {'Local': cidade, 'Data':data}
+    #         resultado = parametros | aluguel | venda
 
-            # Dataframe
-            df = (
-                json_normalize(resultado)
-                .rename(columns = {'Local':'str_local','Data':'data','Aluguel.Imoveis':'imoveis_aluguel', 'Venda.Imoveis':'imoveis_venda'})
-                .filter(['str_local','imoveis_aluguel','imoveis_venda','data'], axis = 'columns')
-            )
+    #         # Dataframe
+    #         df = (
+    #             json_normalize(resultado)
+    #             .rename(columns = {'Local':'str_local','Data':'data','Aluguel.Imoveis':'imoveis_aluguel', 'Venda.Imoveis':'imoveis_venda'})
+    #             .filter(['str_local','imoveis_aluguel','imoveis_venda','data'], axis = 'columns')
+    #         )
 
-            try:
-                # Salvando na tabela de disponibilidade_municipios
-                engine = create_engine(f"postgresql://{os.environ['USERNAME_PSQL']}:{os.environ['PASSWORD_PSQL']}@localhost:5432/{db_name}")
+    #         try:
+    #             # Salvando na tabela de disponibilidade_municipios
+    #             engine = create_engine(f"postgresql://{os.environ['USERNAME_PSQL']}:{os.environ['PASSWORD_PSQL']}@localhost:5432/{db_name}")
                 
-                df.to_sql(
-                    f'{table_name}',
-                    con = engine,
-                    if_exists = f'{if_exists}',
-                    index = False
-                )
+    #             df.to_sql(
+    #                 f'{table_name}',
+    #                 con = engine,
+    #                 if_exists = f'{if_exists}',
+    #                 index = False
+    #             )
 
-                print(f'Dados de venda e aluguel da cidade {cidade} salvos na tabela {table_name}!')
+    #             print(f'Dados de venda e aluguel da cidade {cidade} salvos na tabela {table_name}!')
 
-                 # Fechando conexão
-                engine.dispose()
-            except:
-                pass
+    #              # Fechando conexão
+    #             engine.dispose()
+    #         except:
+    #             pass
 
-            return resultado
+    #         return resultado
 
-        if modo.lower().strip() == 'cidade':
-            # Chamando função auxiliar
-            res = disponibilidade(cidade = cidade)
+    #     if modo.lower().strip() == 'cidade':
+    #         # Chamando função auxiliar
+    #         res = disponibilidade(cidade = cidade)
 
-            return res
+    #         return res
 
-        elif modo.lower().strip() == 'estado':
-            # Dados geográficos
-            dados_municipios = UtilsPSQL().execute_query(
-                f'''
-                    SELECT 
-                            DISTINCT str_local,
-                            str_uf,
-                            str_regiao
-                    FROM imoveis_municipios
-                    WHERE str_uf = '{estado.upper()}'
-                    ORDER BY str_uf, str_local
-                '''
-            )
+    #     elif modo.lower().strip() == 'estado':
+    #         # Dados geográficos
+    #         dados_municipios = UtilsPSQL().execute_query(
+    #             f'''
+    #                 SELECT 
+    #                         DISTINCT str_local,
+    #                         str_uf,
+    #                         str_regiao
+    #                 FROM imoveis_municipios
+    #                 WHERE str_uf = '{estado.upper()}'
+    #                 ORDER BY str_uf, str_local
+    #             '''
+    #         )
 
-            res = []
-            # Lista de locais
-            locais = list(map(lambda x: x ,dados_municipios['str_local']))
+    #         res = []
+    #         # Lista de locais
+    #         locais = list(map(lambda x: x ,dados_municipios['str_local']))
             
-            # Criando thread pool com 5 workers para executar tasks de forma concorrente
-            with concurrent.futures.ThreadPoolExecutor(max_workers = 2) as executor:
-                # Criando a sequência de tasks que serão submetidas para a thread pool
-                urls = {executor.submit(disponibilidade, local): local for local in locais}
+    #         # Criando thread pool com 5 workers para executar tasks de forma concorrente
+    #         with concurrent.futures.ThreadPoolExecutor(max_workers = 2) as executor:
+    #             # Criando a sequência de tasks que serão submetidas para a thread pool
+    #             urls = {executor.submit(disponibilidade, local): local for local in locais}
                 
-                # Loop para executar as tasks de forma concorrente. Também seria possível criar uma list comprehension que esperaria todos os resultados para retornar os valores.
-                for future in concurrent.futures.as_completed(urls):
-                    url = urls[future]
-                    try:
-                        resultado = future.result()
-                        res.append(resultado)
-                        # print(f'{url} OK')
-                    except Exception as exc:
-                        print(f'{url} com erro: {exc}')
+    #             # Loop para executar as tasks de forma concorrente. Também seria possível criar uma list comprehension que esperaria todos os resultados para retornar os valores.
+    #             for future in concurrent.futures.as_completed(urls):
+    #                 url = urls[future]
+    #                 try:
+    #                     resultado = future.result()
+    #                     res.append(resultado)
+    #                     # print(f'{url} OK')
+    #                 except Exception as exc:
+    #                     print(f'{url} com erro: {exc}')
             
-            return res
-        else:
-            print(f'Modo {modo} não existe. Escolha uma opção válida de modo!')
+    #         return res
+    #     else:
+    #         print(f'Modo {modo} não existe. Escolha uma opção válida de modo!')
