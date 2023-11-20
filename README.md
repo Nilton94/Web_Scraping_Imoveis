@@ -12,3 +12,6 @@ Este projeto visa criar uma estrutura de código capaz de realizar uma raspagem 
 Além disso, num segundo momento será adicionado análises com base no local escolhido direto no streamlit.
 
 ## Estrutura
+
+## Link do app
+
