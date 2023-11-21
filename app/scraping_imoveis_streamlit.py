@@ -14,7 +14,8 @@ import io
 # ------------------------------------------ Dados dos municípios ----------------------------------------------#
 
 df_mun = pd.read_parquet(
-    os.path.join(os.getcwd(),'data','bronze','municipios_raw.parquet')
+    # os.path.join(os.getcwd(),'data','bronze','municipios_raw.parquet')
+    os.path.join('..','app','data','bronze','municipios_raw.parquet')
 )
 df_mun.sort_values(by = ['str_uf', 'str_local'], ascending = [True, True], inplace = True)
 locais = list(map(lambda x: x ,df_mun['str_local']))
