@@ -13,7 +13,7 @@ import pytz
 from sqlalchemy import create_engine
 from pandas import json_normalize
 import os
-# from utils.utils_psql import UtilsPSQL
+import shutil
 import concurrent.futures
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -162,7 +162,8 @@ class ScraperZap:
             options.add_argument("--window-size=1920x1080")
             options.add_argument("--disable-features=VizDisplayCompositor")
             
-            browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+            # browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+            browser = webdriver.Chrome(options=options)
             browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={paginas}')
             
             time.sleep(2)
