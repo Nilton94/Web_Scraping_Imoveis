@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 import time
 import re
 import requests
@@ -152,7 +153,16 @@ class ScraperZap:
         def get_html(paginas):
 
             # Browser
-            browser = webdriver.Chrome(ChromeDriverManager().install())
+            options = Options()
+            options.add_argument("--headless")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
+            options.add_argument("--disable-features=NetworkService")
+            options.add_argument("--window-size=1920x1080")
+            options.add_argument("--disable-features=VizDisplayCompositor")
+            
+            browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
             browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={paginas}')
             
             time.sleep(2)
