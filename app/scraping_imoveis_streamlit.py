@@ -15,9 +15,8 @@ import io
 
 df_mun = pd.read_parquet(
     # os.path.join(os.getcwd(),'data','bronze','municipios_raw.parquet')
-    'G:\\Otros ordenadores\\Meu modelo Laptop\\Ciência de Dados\\8. Projetos\\Web_Scraping_Imoveis\\app\\data\\bronze\\municipios_raw.parquet'
     # os.path.join(os.getcwd(),'data','bronze','municipios_raw.parquet').replace('\\','/')
-    # os.path.join(os.getcwd(),'app','data','bronze','municipios_raw.parquet').replace('\\','/')
+    os.path.join(os.getcwd(),'app','data','bronze','municipios_raw.parquet').replace('\\','/')
 )
 df_mun.sort_values(by = ['str_uf', 'str_local'], ascending = [True, True], inplace = True)
 locais = list(map(lambda x: x ,df_mun['str_local']))
