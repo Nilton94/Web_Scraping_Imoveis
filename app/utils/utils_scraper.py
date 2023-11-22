@@ -424,13 +424,14 @@ class ScraperZap:
             current_dir = os.getcwd()
 
             # Path do diretório para salvar dos dados
-            data_dir = os.path.join(current_dir, 'data', 'bronze')
+            # data_dir = os.path.join(current_dir, 'data', 'bronze') # Tentativa de resolver o problema no streamlit
+            data_dir = os.path.join(current_dir, 'app', 'data', 'bronze')
 
             # Criando o diretório caso nao exista
             os.makedirs(data_dir, exist_ok  = True)
 
             # Path do arquivo
-            parquet_file_path = os.path.join(data_dir, 'dados_imoveis_raw.parquet')
+            parquet_file_path = os.path.join(data_dir, 'dados_imoveis_raw.parquet').replace('\\','/')
 
             # Pyarrow table
             pa_df = pa.Table.from_pandas(df)
