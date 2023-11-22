@@ -14,6 +14,7 @@ from sqlalchemy import create_engine
 from pandas import json_normalize
 import os
 import shutil
+from selenium.webdriver.chrome.service import Service
 import concurrent.futures
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -152,7 +153,9 @@ class ScraperZap:
 
         def get_html(paginas):
 
-            # Browser
+            # Parâmetros do browser
+            logpath = os.path.join(os.getcwd(), 'selenium.log')
+            chromedriver_path = shutil.which('chromedriver')
             options = Options()
             options.add_argument("--headless")
             options.add_argument("--no-sandbox")
@@ -161,9 +164,14 @@ class ScraperZap:
             options.add_argument("--disable-features=NetworkService")
             options.add_argument("--window-size=1920x1080")
             options.add_argument("--disable-features=VizDisplayCompositor")
+            service = Service(
+                            executable_path = chromedriver_path,
+                            log_output=logpath,
+                        )
+            browser = webdriver.Chrome(options = options, service = service)
             
             # browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-            browser = webdriver.Chrome(options=options)
+            # browser = webdriver.Chrome(options=options)
             browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={paginas}')
             
             time.sleep(2)
