@@ -154,23 +154,23 @@ class ScraperZap:
         def get_html(paginas):
 
             # Parâmetros do browser
-            logpath = os.path.join(os.getcwd(), 'selenium.log')
-            chromedriver_path = shutil.which('chromedriver')
-            options = Options()
-            options.add_argument("--headless")
-            options.add_argument("--no-sandbox")
-            options.add_argument("--disable-dev-shm-usage")
-            options.add_argument("--disable-gpu")
-            options.add_argument("--disable-features=NetworkService")
-            options.add_argument("--window-size=1920x1080")
-            options.add_argument("--disable-features=VizDisplayCompositor")
-            service = Service(
-                            executable_path = chromedriver_path,
-                            log_output=logpath,
-                        )
-            browser = webdriver.Chrome(options = options, service = service)
+            # logpath = os.path.join(os.getcwd(), 'selenium.log')
+            # chromedriver_path = shutil.which('chromedriver')
+            # options = Options()
+            # options.add_argument("--headless")
+            # options.add_argument("--no-sandbox")
+            # options.add_argument("--disable-dev-shm-usage")
+            # options.add_argument("--disable-gpu")
+            # options.add_argument("--disable-features=NetworkService")
+            # options.add_argument("--window-size=1920x1080")
+            # options.add_argument("--disable-features=VizDisplayCompositor")
+            # service = Service(
+            #                 executable_path = chromedriver_path,
+            #                 log_output=logpath,
+            #             )
+            # browser = webdriver.Chrome(options = options, service = service)
             
-            # browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+            browser = webdriver.Chrome(ChromeDriverManager().install())
             # browser = webdriver.Chrome(options=options)
             browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={paginas}')
             
