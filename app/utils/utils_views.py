@@ -25,8 +25,8 @@ class StViews():
         try:
             # Carregando a base criada nos últimos 2 dias para checar se satisfaz o filtro passado
             df = pd.read_parquet(
-                    # os.path.join(os.getcwd(),'data','bronze','dados_imoveis_raw.parquet'), 
-                    os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/'),
+                    (os.path.join(os.getcwd(),'data','bronze','dados_imoveis_raw.parquet') if os.getcwd().__contains__('app') else os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/')),
+                    # os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/'),
                     filters = [
                         ("ano", "=", int((datetime.datetime.now(tz = None) - datetime.timedelta(2)).strftime("%Y"))), 
                         ("mes", "=", int((datetime.datetime.now(tz = None) - datetime.timedelta(2)).strftime("%m"))), 
@@ -50,8 +50,8 @@ class StViews():
 
                 # Base obtido na data atual conforme parâmetros passados
                 df = pd.read_parquet(
-                    # os.path.join(os.getcwd(),'data','bronze','dados_imoveis_raw.parquet'), 
-                    os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/'),
+                    (os.path.join(os.getcwd(),'data','bronze','dados_imoveis_raw.parquet') if os.getcwd().__contains__('app') else os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/')),
+                    # os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/'),
                     filters = [
                         ("ano", "=", int(datetime.datetime.now(tz = None).strftime("%Y"))), 
                         ("mes", "=", int(datetime.datetime.now(tz = None).strftime("%m"))), 
@@ -86,8 +86,8 @@ class StViews():
 
                 # Base dos últimos 2 dias, mais os tipos ausentes na consulta atual
                 df = pd.read_parquet(
-                    # os.path.join(os.getcwd(),'data','bronze','dados_imoveis_raw.parquet'), 
-                    os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/'),
+                    (os.path.join(os.getcwd(),'data','bronze','dados_imoveis_raw.parquet') if os.getcwd().__contains__('app') else os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/')),
+                    # os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/'),
                     filters = [
                         ("ano", "=", int((datetime.datetime.now(tz = None) - datetime.timedelta(2)).strftime("%Y"))), 
                         ("mes", "=", int((datetime.datetime.now(tz = None) - datetime.timedelta(2)).strftime("%m"))), 
