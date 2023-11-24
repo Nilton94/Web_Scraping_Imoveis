@@ -20,6 +20,9 @@ import concurrent.futures
 import pyarrow as pa
 import pyarrow.parquet as pq
 
+# Setup
+os.system('sbase install geckodriver')
+os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
 
 class ScraperZap:
     
