@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import FirefoxOptions
 import time
 import re
 import requests
@@ -19,10 +19,9 @@ from selenium.webdriver.chrome.service import Service
 import concurrent.futures
 import pyarrow as pa
 import pyarrow.parquet as pq
+from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
 
-# Setup
-os.system('sbase install geckodriver')
-os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
 
 class ScraperZap:
     
@@ -158,8 +157,14 @@ class ScraperZap:
         def get_html(paginas):
 
             # browser
-            # browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
-            browser = webdriver.Firefox()
+            if os.getcwd().__contains__('app'):
+                browser = webdriver.Firefox()
+            else:
+                service = Service(GeckoDriverManager().install())
+                opts = FirefoxOptions()
+                opts.add_argument("--headless")
+                browser = webdriver.Firefox(options = opts, service = service)
+
             browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={paginas}')
             
             time.sleep(2)
