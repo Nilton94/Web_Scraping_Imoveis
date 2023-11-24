@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 import re
@@ -81,7 +82,7 @@ class ScraperZap:
 
             # Obtenção do total de imóveis disponíveis na url analisada
             soup = BeautifulSoup(r.text, 'html.parser')
-            res = soup.find('div', {"class":"listing-wrapper__title"}).text
+            res = soup.find('div', {"class":"result-wrapper__title"}).text # listing-wrapper__title para result-wrapper__title em 22.11.23
 
             imoveis = int(re.sub('[^0-9]','',res))
             imoveis_pagina = imoveis//100 if imoveis//100 > 1 else 1
@@ -153,25 +154,9 @@ class ScraperZap:
 
         def get_html(paginas):
 
-            # Parâmetros do browser
-            # logpath = os.path.join(os.getcwd(), 'selenium.log')
-            # chromedriver_path = shutil.which('chromedriver')
-            # options = Options()
-            # options.add_argument("--headless")
-            # options.add_argument("--no-sandbox")
-            # options.add_argument("--disable-dev-shm-usage")
-            # options.add_argument("--disable-gpu")
-            # options.add_argument("--disable-features=NetworkService")
-            # options.add_argument("--window-size=1920x1080")
-            # options.add_argument("--disable-features=VizDisplayCompositor")
-            # service = Service(
-            #                 executable_path = chromedriver_path,
-            #                 log_output=logpath,
-            #             )
-            # browser = webdriver.Chrome(options = options, service = service)
-            
-            browser = webdriver.Chrome(ChromeDriverManager().install())
-            # browser = webdriver.Chrome(options=options)
+            # browser
+            # browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+            browser = webdriver.Firefox()
             browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={paginas}')
             
             time.sleep(2)
@@ -443,14 +428,15 @@ class ScraperZap:
             current_dir = os.getcwd()
 
             # Path do diretório para salvar dos dados
-            # data_dir = os.path.join(current_dir, 'data', 'bronze') # Tentativa de resolver o problema no streamlit
-            data_dir = os.path.join(current_dir, 'app', 'data', 'bronze')
+            # data_dir = os.path.join(current_dir, 'data', 'bronze') 
+            # Resolver o problema de path no streamlit cloud e poder testar localmente
+            data_dir = os.path.join(current_dir, 'data', 'bronze') if os.getcwd().__contains__('app') else os.path.join(current_dir, 'app', 'data', 'bronze')
 
             # Criando o diretório caso nao exista
             os.makedirs(data_dir, exist_ok  = True)
 
             # Path do arquivo
-            parquet_file_path = os.path.join(data_dir, 'dados_imoveis_raw.parquet').replace('\\','/')
+            parquet_file_path = os.path.join(data_dir, 'dados_imoveis_raw.parquet') if os.getcwd().__contains__('app') else os.path.join(data_dir, 'dados_imoveis_raw.parquet').replace('\\','/')
 
             # Pyarrow table
             pa_df = pa.Table.from_pandas(df)

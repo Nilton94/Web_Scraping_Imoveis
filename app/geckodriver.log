@@ -1,0 +1,308 @@
+1700702188852	geckodriver	INFO	Listening on 127.0.0.1:62383
+1700702191903	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "62384" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofileWg9Vng"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700702192905	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700702193011	Marionette	INFO	Listening on port 62398
+WebDriver BiDi listening on ws://127.0.0.1:62384
+Read port: 62398
+1700702193227	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:62384/devtools/browser/7e36ba8e-bb63-47e1-9a75-ce914edd9dbb
+1700702197126	Marionette	INFO	Stopped listening on port 62398
+Dynamically enable window occlusion 1
+1700702352112	geckodriver	INFO	Listening on 127.0.0.1:62534
+1700702355147	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "62535" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofileZL5ugB"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700702355875	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700702356065	Marionette	INFO	Listening on port 62545
+Read port: 62545
+WebDriver BiDi listening on ws://127.0.0.1:62535
+1700702356175	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:62535/devtools/browser/dc3637cd-d243-4261-a01e-e5334ded2035
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 1099 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1700702388130	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript warning: https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}, line 14: Script terminated by timeout at:
+r.prototype.flushEventQueue@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3137
+r/<@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3642
+
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1:9:16132
+
+1700702477501	Marionette	INFO	Stopped listening on port 62545
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+onment
+1700702411506	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700702411589	Marionette	INFO	Listening on port 62767
+WebDriver BiDi listening on ws://127.0.0.1:62754
+Read port: 62767
+1700702411772	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:62754/devtools/browser/8c4c3eb4-6a50-468d-9368-b8414d0b05b8
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 2733 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1700702441798	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript warning: https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}, line 14: Script terminated by timeout at:
+r.prototype.logPixel@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3418
+r.prototype.flushEventQueue@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3152
+r/<@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3642
+
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1:9:16161
+
+1700702478240	Marionette	INFO	Stopped listening on port 62767
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1700702645203	geckodriver	INFO	Listening on 127.0.0.1:54619
+1700702648243	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "54620" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofileG5tceT"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700702649020	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700702649122	Marionette	INFO	Listening on port 54630
+WebDriver BiDi listening on ws://127.0.0.1:54620
+Read port: 54630
+1700702649363	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:54620/devtools/browser/85663de6-db72-4f9c-a6a4-f206dd77ecf1
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 469 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 2584 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1700702679029	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+1700702679812	Marionette	INFO	Stopped listening on port 54630
+JavaScript warning: https://s0.2mdn.net/879366/express_html_inpage_rendering_lib_200_278.js, line 58: Script terminated by timeout at:
+Yf.prototype.D@https://s0.2mdn.net/879366/express_html_inpage_rendering_lib_200_278.js:58:575
+
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1:9:16132
+
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+console.warn: services.settings: main/normandy-recipes-capabilities sync interrupted by shutdown
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+console.warn: services.settings: main/language-dictionaries sync interrupted by shutdown
+console.warn: services.settings: main/password-recipes sync interrupted by shutdown
+console.warn: services.settings: main/password-rules sync interrupted by shutdown
+console.warn: services.settings: main/translations-identification-models sync interrupted by shutdown
+console.warn: services.settings: main/translations-wasm sync interrupted by shutdown
+console.warn: services.settings: main/fingerprinting-protection-overrides sync interrupted by shutdown
+console.warn: services.settings: main/fxmonitor-breaches sync interrupted by shutdown
+console.warn: services.settings: main/search-config sync interrupted by shutdown
+console.error: (new AbortError("IndexedDB: main/cookie-banner-rules-list getLastModified() IndexedDB:  execute() A request was aborted, for example through a call to IDBTransaction.abort.", "resource://services-settings/IDBHelpers.sys.mjs", 16))
+1700703095815	geckodriver	INFO	Listening on 127.0.0.1:53812
+1700703098899	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "53813" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofileiwiVlP"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700703099540	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700703099649	Marionette	INFO	Listening on port 53824
+WebDriver BiDi listening on ws://127.0.0.1:53813
+Read port: 53824
+1700703099879	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:53813/devtools/browser/1a6321f4-6fda-4c0d-945c-8022091282ed
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 5204 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 4838 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1700703129565	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+1700703134954	Marionette	INFO	Stopped listening on port 53824
+JavaScript warning: https://s0.2mdn.net/879366/express_html_inpage_rendering_lib_200_278.js, line 58: Script terminated by timeout at:
+Yf.prototype.D@https://s0.2mdn.net/879366/express_html_inpage_rendering_lib_200_278.js:58:575
+
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1:9:16132
+
+JavaScript warning: https://accounts.google.com/gsi/iframe/select?client_id=921794725494-e6eovv6chrq0661m9r6lb6bo118otanc.apps.googleusercontent.com&ux_mode=popup&ui_mode=card&as=vkhGNfL9OakackDb8aUJ1g&is_itp=true&channel_id=8c419a0038b972059a75535b32fb0e89d13e6107afbc68ea53589782d9b815d0&origin=https%3A%2F%2Fwww.zapimoveis.com.br, line 187: Script terminated by timeout at:
+mi/this.j@/_/gsi/_/js/k=gsi.gsi.es_419.Mb_kRcF123c.O/am=AFAw/d=1/rs=AF0KOtW_WyLsBsVYbFMpoxyX5lavTQbZ1w/m=credential_server_library:187:180
+pi@/_/gsi/_/js/k=gsi.gsi.es_419.Mb_kRcF123c.O/am=AFAw/d=1/rs=AF0KOtW_WyLsBsVYbFMpoxyX5lavTQbZ1w/m=credential_server_library:188:104
+mi.prototype.start/this.g<@/_/gsi/_/js/k=gsi.gsi.es_419.Mb_kRcF123c.O/am=AFAw/d=1/rs=AF0KOtW_WyLsBsVYbFMpoxyX5lavTQbZ1w/m=credential_server_library:187:369
+
+Dynamically enable window occlusion 1
+1700703224140	geckodriver	INFO	Listening on 127.0.0.1:52787
+1700703227154	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "52788" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofilenBfE6A"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700703227537	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700703227627	Marionette	INFO	Listening on port 52797
+WebDriver BiDi listening on ws://127.0.0.1:52788
+Read port: 52797
+1700703227795	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:52788/devtools/browser/31198035-99ee-4550-998a-ea26d6354be5
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 2936 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1700703258155	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+1700703264567	Marionette	INFO	Stopped listening on port 52797
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1:9:16132
+
+Dynamically enable window occlusion 1
+1700703348037	geckodriver	INFO	Listening on 127.0.0.1:62182
+1700703351055	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "62183" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofileT4tFAc"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700703351517	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700703351677	Marionette	INFO	Listening on port 62194
+Read port: 62194
+WebDriver BiDi listening on ws://127.0.0.1:62183
+1700703351828	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:62183/devtools/browser/cf7d12d4-6d20-4196-ae9b-efc98286720f
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 3853 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 5750 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1700703381538	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+1700703385519	Marionette	INFO	Stopped listening on port 62194
+JavaScript warning: https://s0.2mdn.net/879366/express_html_inpage_rendering_lib_200_278.js, line 58: Script terminated by timeout at:
+Yf.prototype.D@https://s0.2mdn.net/879366/express_html_inpage_rendering_lib_200_278.js:58:575
+
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1700738743311	geckodriver	INFO	Listening on 127.0.0.1:55731
+1700738746415	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "55732" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofiledbPjHo"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700738747560	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700738747681	Marionette	INFO	Listening on port 55747
+WebDriver BiDi listening on ws://127.0.0.1:55732
+Read port: 55747
+1700738747972	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:55732/devtools/browser/55cab2e7-3c09-4cf7-8781-30874077e8d7
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 1280 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1700738777615	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript warning: https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}, line 14: Script terminated by timeout at:
+r.prototype.logPixel@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3418
+r.prototype.flushEventQueue@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3152
+r/<@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3642
+
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1:9:16132
+
+1700738814798	Marionette	INFO	Stopped listening on port 55747
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1700738816180	geckodriver	INFO	Listening on 127.0.0.1:65350
+1700738819193	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "65351" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofileCMGbqC"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700738819619	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700738819702	Marionette	INFO	Listening on port 65361
+WebDriver BiDi listening on ws://127.0.0.1:65351
+Read port: 65361
+1700738819858	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:65351/devtools/browser/aebda758-dc90-4458-8c85-f9f81831bc49
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 6977 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1700738846905	Marionette	INFO	Stopped listening on port 65361
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=1:9:16132
+
+Dynamically enable window occlusion 1
+1700739101260	geckodriver	INFO	Listening on 127.0.0.1:61914
+1700739104303	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "61917" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofilePATwEN"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700739104601	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700739104936	Marionette	INFO	Listening on port 61942
+WebDriver BiDi listening on ws://127.0.0.1:61917
+Read port: 61942
+1700739105195	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:61915/devtools/browser/cdf75e5c-edef-4bac-8312-63b1f2e62b89
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 5421 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.1700739134994	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JJavaScript warning: https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}, line 14: Script terminated by timeout at:
+r.prototype.flushEventQueue@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3137
+r/<@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3642
+11700739177179	Marionette	INFO	Stopped listening on port 61941
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/apartamentos/se+aracaju/?transacao=aluguel&pagina=1, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/apartamentos/se+aracaju/?transacao=aluguel&pagina=1:9:16132
+DDynamically enable window occlusion 1
+avaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+empting to fetch resource.
+1700782524188	geckodriver	INFO	Listening on 127.0.0.1:52612
+1700782527270	mozrunner::runner	INFO	Running command: "C:\\P1700782529484	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "52625" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofileIz94lt"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700782529909	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700782530158	Marionette	INFO	Listening on port 52672
+WebDriver BiDi listening on ws://127.0.0.1:52625
+Read port: 52672
+1700782530519	RemoteAgent	WADevTools listening on ws://127.0.0.1:52614/devtools/browser/DevTools listening on ws://127.0.0.1:5JavaScript warning: https://pagead2.googlesyndication.com/bgJavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 2808 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is depre1700782553607	Marionette	INFO	Stopped listening on port 52641700782554513	Marionette	INFO	Stopped listening on port 52672
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/sobrados/se+aracaju/?transacao=aluguel&pagina=2, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/sobrados/se+aracaju/?transacao=aluguel&pagina=2:9:16132
+
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+hen attempting to fetch resource.
+1700782570303	geckodriver	INFO	Listening on 127.0.0.1:53337
+1700782573352	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "53339" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofilewzosXm"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700782573823	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700782573919	Marionette	INFO	Listening on port 53356
+WebDriver BiDi listening on ws://127.0.0.1:53339
+Read port: 53356
+1700782574093	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:53338/devtools/browser/91883943-ac7e-4832-b13a-2a27449b85fc
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 6197 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1700782604164	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript warning: https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:nJavaScript warning: https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}, line 14: Script terminated by timeout at:
+r.prototype.flushEventQueue@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3137
+r/<@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22b1700782617698	Marionette	INFO	Stopped listening on port 50267
+Dynamically enable window occlusion 1
+Marionette	INFO	Stopped listening on port 53356
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/casas/se+aracaju/?transacao=aluguel&pagina=2, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/casas/se+arac1700782622961	Marionette	INFO	Stopped listening on port 53355
+JavaScript warning: https://s0.2mdn.net/879366/express_html_inpage_rendering_lib_200_278.js, line 58: Script terminated by timeout at:
+Yf.prototype.D@https://s0.2mdn.net/879366/express_html_inpage_rendering_lib_200_278.js:58:575
+
+Dynamically enable window occlusion 1
+JavaScript error: https://www.googletagservices.com/activeview/js/current/ufs_web_display.js?cache=r20110914, line 138: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+1700782638224	geckodriver	INFO	Listening on 127.0.0.1:50825
+1700782641269	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "50827" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofilerHNR4Y"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700782641699	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700782641793	Marionette	INFO	Listening on port 50842
+WebDriver BiDi listening on ws://127.0.0.1:50828
+Read port: 50841
+1700782642015	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:50828/devtools/browser/9585752f-ea6f-4622-a6f2-5d0320e7ccf3
+1700782651567	Marionette	INFO	Stopped listening on port 50841
+JavaScript warning: https://accounts.google.com/gsi/iframe/select?client_id=921794725494-e6eovv6chrq0661m9r6lb6bo118otanc.apps.googleusercontent.com&ux_mode=popup&ui_mode=card&as=CYpjQfehh0QYi0ctVW5Jow&is_itp=true&channel_id=b2030744fb33ec0384f5597Dynamically enable window occlusion 1
+22&origin=https%3A%2F%2Fwww.zapimoveis.com.br, line 182: Script terminated by timeout at:
+_.di/<@/_/gsi/_/js/k=gsi.gsi.es_419.Mb_kRcF123c.O/am=AFAg/d=1/rs=AF0KOtXReDDnzuDAUseSafaKsRiZI54_BQ/m=credential_server_library:182:1163
+_.di@/_/gsi/_/js/k=gsi.gsi.es_419.Mb_kRcF123c.O/am=AFAg/d=1/rs=AF0KOtXReDDnzuDAUseSafaKsRiZI54_BQ/m=credential_server_library:182:1060
+_.ei/<@/_/gsi/_/js/k=gsi.gsi.es_419.Mb_kRcF123c.O/am=AFAg/d=1/rs=AF0KOtXReDDnzuDAUseSafaKsRiZI54_BQ/m=credential_server_library:183:56
+
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/loft/se+aracaju/?transacao=aluguel&pagina=2, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/loft/se+aracaju/?transacao=aluguel&pagina=2:9:16132
+
+Dynamically enable window occlusion 1
+1700782668156	geckodriver	INFO	Listening on 127.0.0.1:51184
+1700782671194	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "51185" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofileHL3SxU"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700782671557	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700782671657	Marionette	INFO	Listening on port 51200
+WebDriver BiDi listening on ws://127.0.0.1:51186
+Read port: 51200
+1700782671831	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:51185/devtools/browser/b7ba4967-7432-4a73-9fda-a5ce1bec809e
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 1659 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1700782684426	Marionette	INFO	Stopped listening on port 51200
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+ubads.g.doubleclick.net/tag/js/gpt.js:10:45687
+Gi@https://securepubads.g.doubleclick.net/tag/js/gpt.js:10:44047
+@https://securepubads.g.doubleclick.net/tag/js/gpt.js:10:46028
+@https://securepubads.g.doubleclick.net/tag/js/gpt.js:10:46076
+
+Dynamically enable window occlusion 1
