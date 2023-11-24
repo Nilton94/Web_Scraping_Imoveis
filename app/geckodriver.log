@@ -306,3 +306,47 @@ Gi@https://securepubads.g.doubleclick.net/tag/js/gpt.js:10:44047
 @https://securepubads.g.doubleclick.net/tag/js/gpt.js:10:46076
 
 Dynamically enable window occlusion 1
+1700862784896	geckodriver	INFO	Listening on 127.0.0.1:65272
+1700862787917	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "65278" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofiletzhCeV"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700862788556	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700862789077	Marionette	INFO	Listening on port 65317
+WebDriver BiDi listening on ws://127.0.0.1:65281
+Read port: 65317
+1700862789429	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:65274/devtools/browser/69e58083-2c75-4867-96bc-b0f9ed73f714
+JavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 6131 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.1700862819156	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript warning: https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:nuJavaScript warning: https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}, line 14: Script terminated by timeout at:
+r.prototype.flushEventQueue@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3137
+r/<@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%11700862874848	Marionette	INFO	Stopped listening on port 65319
+Dynamically enable window occlusion 1
+is.com.br/aluguel/apartamentos/al+mac1700862875639	Marionette	INFO	Stopped listening on port 65317
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/apartamentos/al+maceio/?transacao=aluguel&pagina=3, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/apartamentos/al+maceio/?transacao=aluguel&pagina=3:9:16132
+
+Dynamically enable window occlusion 1
+when attempting to fetch resource.
+io/?transacao=aluguel&pagina=1:9:16132
+
+Dynamically enable window occlusion 1
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_untrustedmodules_ping
+1700862885341	geckodriver	INFO	Listening on 127.0.0.1:62664
+1700862888395	mozrunner::runner	INFO	Running command: "C:\\P1700862889559	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Firefox Developer Edition\\firefox.exe" "--marionette" "--remote-debugging-port" "62672" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofilefqKiJ9"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700862890180	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700862890287	Marionette	INFO	Listening on port 62712
+WebDriver BiDi listening on ws://127.0.0.1:62672
+Read port: 62712
+1700862890555	RemoteAgent	WADevTools listening on ws://127.0.0.1:62665/devtools/browser/DevTools listening on ws://127.0.0.1:6JavaScript warning: https://pagead2.googlesyndication.com/bgJavaScript warning: https://pagead2.googlesyndication.com/bg/GOa2ZK97xVqw-WOSDw2lqG4V8l_qTiI5JNj0tnI6N88.js line 2 > eval line 4326 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is depre1700862918803	addons.xpi	ERROR	System addon update list erro1700862920210	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'httpJavaScript warning: https://gum.criteo.com/syncframe?topUrl=JavaScript warning: https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}, line 14: Script terminated by timeout at:
+r.prototype.flushEventQueue@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%22:0,%22value%22:null},%22lsw%22:true,%22pm%22:0}:14:3137
+r/<@https://gum.criteo.com/syncframe?topUrl=www.zapimoveis.com.br&origin=onetag#{%22bundle%22:{%22origin%22:0,%22value%22:null},%22cw%22:true,%22optout%22:{%22origin%22:0,%22value%22:null},%22origin%22:%22onetag%22,%22sid%22:{%22origin%22:0,%22value%22:null},%22tld%22:%22zapimoveis.com.br%22,%22topUrl%22:%22www.zapimoveis.com.br%22,%22version%22:%225_20_0%22,%22ifa%22:{%22origin%21700862939778	Marionette	INFO	Stopped listening on port 62688
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/apartamentos/al+maceio/?transacao=aluguel&pagina=5, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/apartamentos/al+maceio/?transacao=aluguel&pagina=5:9:16132
+
+Dynamically enable window occlusion 1
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
