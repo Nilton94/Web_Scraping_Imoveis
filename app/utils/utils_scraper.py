@@ -163,7 +163,8 @@ class ScraperZap:
                 service = Service(GeckoDriverManager().install())
                 opts = FirefoxOptions()
                 opts.add_argument("--headless")
-                browser = webdriver.Firefox(options = opts, service = service, executable_path="/home/appuser/.conda/bin/geckodriver")
+                # browser = webdriver.Firefox(options = opts, service = service, executable_path="/home/appuser/.conda/bin/geckodriver") 
+                browser = webdriver.Firefox(options = opts, executable_path = "geckodriver")
 
             browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={paginas}')
             
