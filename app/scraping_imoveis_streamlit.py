@@ -10,12 +10,12 @@ import datetime
 import plotly.graph_objects as go
 from utils.utils_views import StViews
 import io
+import pygwalker as pyg
+import streamlit.components.v1 as components
 
 # ------------------------------------------ Dados dos municípios ----------------------------------------------#
 
 df_mun = pd.read_parquet(
-    # os.path.join(os.getcwd(),'data','bronze','municipios_raw.parquet')
-    # os.path.join(os.getcwd(),'app','data','bronze','municipios_raw.parquet').replace('\\','/')
     (os.path.join(os.getcwd(),'data','bronze','municipios_raw.parquet') if os.getcwd().__contains__('app') else os.path.join(os.getcwd(),'app','data','bronze','municipios_raw.parquet').replace('\\','/')),
 )
 df_mun.sort_values(by = ['str_uf', 'str_local'], ascending = [True, True], inplace = True)
@@ -29,7 +29,6 @@ st.set_page_config(
     layout = 'wide',
     initial_sidebar_state = 'expanded',
     menu_items = {
-        # "Get help": "mailto:niltontestespython@gmail.com",
         "About": "App de busca e consolidação de dados de imóveis, com fins de estudo, usando os imóveis disponíveis no site da Zapimóveis. Criado por José Nilton Gonçalves de Andrade (https://www.linkedin.com/in/niltonandrade/)."
     }
 )
@@ -151,7 +150,8 @@ if st.sidebar.button("Gerar Gráficos!", key = 'gerador'):
                 color = 'aluguel',
                 color_continuous_scale = 'Portland',
                 color_continuous_midpoint = np.average(df_sun['aluguel'], weights = df_sun['imoveis']),
-                hover_data  = ['aluguel', 'area', 'quartos', 'chuveiros', 'garagens'],
+                # hover_data  = ['aluguel', 'area', 'quartos', 'chuveiros', 'garagens'],
+                hover_data = {'aluguel':':.2f', 'area':':.2f', 'quartos':':.2f', 'chuveiros':':.2f', 'garagens':':.2f'} ,
                 title = f'<b>Distribuição de Imóveis e Média de Amenidades</b><br>Data: {df["data"].max()}',
                 width = 1100,
                 height = 700
@@ -294,12 +294,21 @@ if st.sidebar.button("Gerar Gráficos!", key = 'gerador'):
             st.plotly_chart(df_plot)
             st.plotly_chart(combo)
             st.plotly_chart(sun_plot)
-            st.plotly_chart(df_tab)
+            # st.plotly_chart(df_tab)
             st.plotly_chart(df_tab_imo_plot)
 
             # Tempo de duração
             fim = datetime.datetime.now(tz = None).replace(microsecond=0)
             tempo = str(fim - inicio)
+
+            # ----------------------------- Testando Pivot_UI -------------- #
+            # t = pivot_ui(df)
+            # with open(t.src, encoding="utf8") as t:
+            #     components.html(t.read(), width = 1100, height = 500, scrolling=True)
+
+            st.write('#### Visualização dos Dados com Pygwalker')
+            pyg_html = pyg.walk(df, hideDataSourceConfig = False, themeKey = 'vega', return_html = True)
+            components.html(pyg_html, width = 1100, height = 900, scrolling = True)
             
             # ------------------------ Download de Dados -------------------- # 
             
@@ -313,7 +322,7 @@ if st.sidebar.button("Gerar Gráficos!", key = 'gerador'):
             )
 
             excel_file = io.BytesIO()
-            df.to_excel(excel_file, index = False, engine='xlsxwriter')
+            df.to_excel(excel_file, index = False, engine = 'xlsxwriter')
             excel_file.seek(0)
             col2.download_button(
                 label='Download da Base Completa em XLSX!',
@@ -322,7 +331,7 @@ if st.sidebar.button("Gerar Gráficos!", key = 'gerador'):
                 use_container_width = True
             )
 
-
+            # ------------------------ Duração -------------------- #
             st.sidebar.write(f'<b>Tempo de duração</b>: {tempo}', unsafe_allow_html=True)
 
         except Exception as e:
