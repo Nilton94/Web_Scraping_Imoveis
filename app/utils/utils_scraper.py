@@ -157,13 +157,24 @@ class ScraperZap:
         def get_html(paginas):
 
             # browser
-            if os.getcwd().__contains__('app'):
-                browser = webdriver.Firefox()
-            else:
-                service = Service(GeckoDriverManager().install())
-                opts = FirefoxOptions()
-                opts.add_argument("--headless")
-                browser = webdriver.Firefox(options = opts, service = service, executable_path="/home/appuser/.conda/bin/geckodriver")
+            # if os.getcwd().__contains__('app'):
+            #     browser = webdriver.Firefox()
+            # else:
+            #     opts = FirefoxOptions()
+            #     firefox_bin = os.path.join(os.getcwd(), 'app', "firefox.exe")
+            #     opts.binary_location = firefox_bin
+            #     geckodriver_bin = os.path.join(os.getcwd(), 'app', "geckodriver")
+            #     opts.add_argument("--headless")
+
+            #     browser = webdriver.Firefox(options = opts, executable_path=geckodriver_bin)
+                
+                # service = Service(GeckoDriverManager().install())
+                # browser = webdriver.Firefox(options = opts, service = service, executable_path="/home/appuser/.conda/bin/geckodriver") 
+                # browser = webdriver.Firefox(options = opts, service = Service("/home/appuser/.conda/bin/geckodriver"))
+
+            from utils_driver import run_selenium
+
+            browser = run_selenium()
 
             browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={paginas}')
             
