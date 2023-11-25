@@ -1,0 +1,16 @@
+1700925086568	geckodriver	INFO	Listening on 127.0.0.1:52823
+1700925089616	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "52824" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\nilto\\AppData\\Local\\Temp\\rust_mozprofilehColYL"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1700925090118	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1700925090216	Marionette	INFO	Listening on port 52833
+WebDriver BiDi listening on ws://127.0.0.1:52824
+Read port: 52833
+1700925090384	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:52824/devtools/browser/6c5bd3cb-a55d-4d9b-a25e-4ac197e7eaad
+1700925099754	Marionette	INFO	Stopped listening on port 52833
+JavaScript warning: https://www.zapimoveis.com.br/aluguel/sobrados/al+maceio/?transacao=aluguel&pagina=1, line 9: Script terminated by timeout at:
+nrWrapper@https://www.zapimoveis.com.br/aluguel/sobrados/al+maceio/?transacao=aluguel&pagina=1:9:16132
+
+Dynamically enable window occlusion 1

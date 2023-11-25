@@ -14,7 +14,6 @@ import pytz
 from sqlalchemy import create_engine
 from pandas import json_normalize
 import os
-import shutil
 from selenium.webdriver.chrome.service import Service
 import concurrent.futures
 import pyarrow as pa
@@ -165,16 +164,14 @@ class ScraperZap:
             #     opts.binary_location = firefox_bin
             #     geckodriver_bin = os.path.join(os.getcwd(), 'app', "geckodriver")
             #     opts.add_argument("--headless")
-
             #     browser = webdriver.Firefox(options = opts, executable_path=geckodriver_bin)
-                
-                # service = Service(GeckoDriverManager().install())
-                # browser = webdriver.Firefox(options = opts, service = service, executable_path="/home/appuser/.conda/bin/geckodriver") 
-                # browser = webdriver.Firefox(options = opts, service = Service("/home/appuser/.conda/bin/geckodriver"))
 
-            from utils_driver import run_selenium
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument('--headless')
+            chrome_options.add_argument('--window-size=1920x1080')
+            chrome_options.add_argument('--disable-gpu')
 
-            browser = run_selenium()
+            browser = webdriver.Chrome(service = Service(ChromeDriverManager().install()), options = chrome_options)
 
             browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={paginas}')
             
