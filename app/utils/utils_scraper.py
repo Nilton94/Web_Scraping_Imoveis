@@ -156,20 +156,6 @@ class ScraperZap:
         def get_html(paginas):
 
             # browser
-            # if os.getcwd().__contains__('app'):
-            # browser = webdriver.Firefox()
-            # else:
-            #     opts = FirefoxOptions()
-            #     firefox_bin = os.path.join(os.getcwd(), 'app', "firefox.exe")
-            #     opts.binary_location = firefox_bin
-            #     geckodriver_bin = os.path.join(os.getcwd(), 'app', "geckodriver")
-            #     opts.add_argument("--headless")
-            #     browser = webdriver.Firefox(options = opts, executable_path=geckodriver_bin)
-
-            # chrome_options = webdriver.ChromeOptions()
-            # chrome_options.add_argument('--headless')
-            # chrome_options.add_argument('--window-size=1920x1080')
-            # chrome_options.add_argument('--disable-gpu')
 
             browser = webdriver.Chrome(ChromeDriverManager().install())
 
