@@ -20,13 +20,13 @@ import streamlit.components.v1 as components
 # )
 # df_mun.sort_values(by = ['str_uf', 'str_local'], ascending = [True, True], inplace = True)
 
+# locais = list(map(lambda x: x ,df_mun['str_local']))
+
 df_imo = pd.read_parquet(
     (os.path.join(os.getcwd(),'data','bronze','dados_imoveis_raw.parquet') if os.getcwd().__contains__('app') else os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/'))
 )
 
 locais = list(df_imo['local'].sort_values(ascending = True).unique())
-
-# locais = list(map(lambda x: x ,df_mun['str_local']))
 
 # ---------------------------------------------- Page Config ----------------------------------------------------#
 
