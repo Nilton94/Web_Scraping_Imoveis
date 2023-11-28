@@ -72,6 +72,7 @@ class StViews():
 
                 # Transformando valores zerados em null para não afetar os cálculos média (schema do Arrow não aceita colunas com valores null)
                 df.replace(0.0, None, inplace = True)
+                df['bairro'] = df['bairro'].replace(to_replace= '', value = 'Sem info')
 
                 # Retornando o dataframe
                 return df
@@ -108,6 +109,7 @@ class StViews():
 
                 # Transformando valores zerados em null para não afetar os cálculos média (schema do Arrow não aceita colunas com valores null)
                 df.replace(0.0, None, inplace = True)
+                df['bairro'] = df['bairro'].replace(to_replace= '', value = 'Sem info')
 
                 # Retornando o dataframe
                 return df
@@ -122,6 +124,7 @@ class StViews():
                         ]
                         .drop_duplicates(subset = ['local','id'], ignore_index = True)
                 )
+                df['bairro'] = df['bairro'].replace(to_replace= '', value = 'Sem info')
 
                 return df
         except Exception as e:
@@ -136,6 +139,7 @@ class StViews():
         try:
             # Obtenção da base
             df = StViews(self.local, self.tipo).check_base()
+            df['bairro'] = df['bairro'].replace(to_replace= '', value = 'Sem info')
 
             # Remoção de outliers de aluguel
             q1 = df.loc[
@@ -209,6 +213,11 @@ class StViews():
             return f'Erro na operação: {e}'
     
     def st_cards(self):
+        '''
+            ### Objetivo:
+            * Retorna cards no streamlit de totalidade dos imóveis, média de aluguel e tipo de imóvel mais comum com base no local e tipo selecionado.
+        '''
+        
         # Base
         df = StViews(self.local, self.tipo, self.ranking).base_agg()
 

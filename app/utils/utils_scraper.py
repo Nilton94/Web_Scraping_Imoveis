@@ -157,7 +157,7 @@ class ScraperZap:
 
             # browser
             # if os.getcwd().__contains__('app'):
-            #     browser = webdriver.Firefox()
+            # browser = webdriver.Firefox()
             # else:
             #     opts = FirefoxOptions()
             #     firefox_bin = os.path.join(os.getcwd(), 'app', "firefox.exe")
@@ -166,12 +166,12 @@ class ScraperZap:
             #     opts.add_argument("--headless")
             #     browser = webdriver.Firefox(options = opts, executable_path=geckodriver_bin)
 
-            chrome_options = webdriver.ChromeOptions()
-            chrome_options.add_argument('--headless')
-            chrome_options.add_argument('--window-size=1920x1080')
-            chrome_options.add_argument('--disable-gpu')
+            # chrome_options = webdriver.ChromeOptions()
+            # chrome_options.add_argument('--headless')
+            # chrome_options.add_argument('--window-size=1920x1080')
+            # chrome_options.add_argument('--disable-gpu')
 
-            browser = webdriver.Chrome(service = Service(ChromeDriverManager().install()), options = chrome_options)
+            browser = webdriver.Chrome(ChromeDriverManager().install())
 
             browser.get(f'{self.base_url}/{self.transacao}/{self.tipo}/{self.local}/?transacao={self.transacao}&pagina={paginas}')
             
@@ -282,7 +282,7 @@ class ScraperZap:
 
                         # Titulo/Bairro
                         try:
-                            bairro = i.find('div',{'data-cy':'card__address'}).text
+                            bairro = i.find('div',{'data-cy':'card__address'}).text if i.find('div',{'data-cy':'card__address'}).text != '' else 'Sem info'
                         except:
                             bairro = 'Sem info'
 
