@@ -15,11 +15,18 @@ import streamlit.components.v1 as components
 
 # ------------------------------------------ Dados dos municípios ----------------------------------------------#
 
-df_mun = pd.read_parquet(
-    (os.path.join(os.getcwd(),'data','bronze','municipios_raw.parquet') if os.getcwd().__contains__('app') else os.path.join(os.getcwd(),'app','data','bronze','municipios_raw.parquet').replace('\\','/')),
+# df_mun = pd.read_parquet(
+#     (os.path.join(os.getcwd(),'data','bronze','municipios_raw.parquet') if os.getcwd().__contains__('app') else os.path.join(os.getcwd(),'app','data','bronze','municipios_raw.parquet').replace('\\','/')),
+# )
+# df_mun.sort_values(by = ['str_uf', 'str_local'], ascending = [True, True], inplace = True)
+
+df_imo = pd.read_parquet(
+    (os.path.join(os.getcwd(),'data','bronze','dados_imoveis_raw.parquet') if os.getcwd().__contains__('app') else os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/'))
 )
-df_mun.sort_values(by = ['str_uf', 'str_local'], ascending = [True, True], inplace = True)
-locais = list(map(lambda x: x ,df_mun['str_local']))
+
+locais = list(df_imo['local'].sort_values(ascending = True).unique())
+
+# locais = list(map(lambda x: x ,df_mun['str_local']))
 
 # ---------------------------------------------- Page Config ----------------------------------------------------#
 
