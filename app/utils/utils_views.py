@@ -25,7 +25,7 @@ class StViews():
         try:
             # Carregando a base criada nos últimos 2 dias para checar se satisfaz o filtro passado
             df = pd.read_parquet(
-                    (os.path.join(os.getcwd(),'data','bronze','dados_imoveis_raw.parquet') if os.getcwd().__contains__('app') else os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/'))
+                    (os.path.join(os.getcwd(),'data','bronze','dados_imoveis_raw.parquet') if os.getcwd().__contains__('app') else os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/')),
                     # os.path.join(os.getcwd(),'app','data','bronze','dados_imoveis_raw.parquet').replace('\\','/'),
                     # filters = [
                     #     ("ano", "=", int((datetime.datetime.now(tz = None) - datetime.timedelta(0)).strftime("%Y"))), 
