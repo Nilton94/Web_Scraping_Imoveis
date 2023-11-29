@@ -55,6 +55,7 @@ local = st.sidebar.selectbox(
 tipo = st.sidebar.multiselect(
     'Tipo de Imóvel',
     options = [
+        '-- Todos --',
         'apartamentos',
         'studio',
         'quitinetes',
@@ -119,7 +120,12 @@ ranking = st.sidebar.number_input(
 
 if st.sidebar.button("Gerar Gráficos!", key = 'gerador'):
     # Checando se o local possui algum imóvel disponível nos tipos especificados
-    imoveis_selecao = [z['Imoveis'] for z in [ScraperZap(tipo = tipo, local = local).paginas() for tipo in st.session_state.tipo for local in [st.session_state.local]] if z['Imoveis'] != None]
+    tipos_total = [
+            'apartamentos','studio','quitinetes','casas','sobrados','casas-de-condominio','casas-de-vila','cobertura','flat','loft','terrenos-lotes-condominios','fazendas-sitios-chacaras','loja-salao','conjunto-comercial-sala',
+            'casa-comercial','hoteis-moteis-pousadas','andares-lajes-corporativas','predio-inteiro','terrenos-lotes-comerciais','galpao-deposito-armazem','box-garagem'
+    ]
+    tipo_final = tipos_total if '-- Todos --' in st.session_state.tipo else st.session_state.tipo
+    imoveis_selecao = [z['Imoveis'] for z in [ScraperZap(tipo = tipo, local = local).paginas() for tipo in tipo_final for local in [st.session_state.local]] if z['Imoveis'] != None]
     total_imoveis_selecao = sum(imoveis_selecao)
 
     if total_imoveis_selecao != None and float(total_imoveis_selecao) > 0:
@@ -138,13 +144,13 @@ if st.sidebar.button("Gerar Gráficos!", key = 'gerador'):
             inicio = datetime.datetime.now(tz = None).replace(microsecond=0)
 
             # ----------------------Obtenção da base ------------------- #
-            df = StViews(local = st.session_state.local, tipo = st.session_state.tipo, ranking = st.session_state.ranking).check_base()
-            df_grouped = StViews(local = st.session_state.local, tipo = st.session_state.tipo, ranking = st.session_state.ranking).base_agg()
+            df = StViews(local = st.session_state.local, tipo = tipo_final, ranking = st.session_state.ranking).check_base()
+            df_grouped = StViews(local = st.session_state.local, tipo = tipo_final, ranking = st.session_state.ranking).base_agg()
 
             st.sidebar.write(f"{datetime.datetime.now(tz = None).replace(microsecond=0)} - :red[*Gerando cards...*]")
             
             # --------------------------- Cards ------------------------ #
-            StViews(local = st.session_state.local, tipo = st.session_state.tipo, ranking = st.session_state.ranking).st_cards()
+            StViews(local = st.session_state.local, tipo = tipo_final, ranking = st.session_state.ranking).st_cards()
 
             st.sidebar.write(f"{datetime.datetime.now(tz = None).replace(microsecond=0)} - :red[*Gerando plots...*]")
             
